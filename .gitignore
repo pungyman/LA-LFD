@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Editor/local workspace state
+.vscode/
+.idea/
+
+# Obsidian local state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/plugins/*/data.json
+
+# Temporary files
+*.tmp
+*.swp
+*~
