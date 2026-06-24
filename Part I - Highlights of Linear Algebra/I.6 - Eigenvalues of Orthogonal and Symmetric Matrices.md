@@ -310,6 +310,72 @@ $$
 R^2 = I.
 $$
 
+## Worked Problems
+
+### Problem 25: Spectral Decomposition into Rank-1 Matrices
+
+Problem 25 is asking you to derive the formula shown in the boxed text: the expansion of a matrix $A$ into a sum of rank-1 matrices. This is also known as the spectral decomposition of a diagonalizable matrix.
+
+Here is the step-by-step mathematical breakdown of how matrix multiplication leads directly to this formula.
+
+#### 1. Define the Component Matrices
+
+Let's look at the pieces of the diagonalization formula $A = X \Lambda X^{-1}$.
+
+- **$X$ (Right Eigenvectors):** This matrix is built by placing the standard (right) eigenvectors of $A$, denoted as $x_i$, as its columns.
+
+$$
+X = \begin{bmatrix} | & | & & | \\ x_1 & x_2 & \dots & x_n \\ | & | & & | \end{bmatrix}
+$$
+
+- **$\Lambda$ (Eigenvalues):** This is the diagonal matrix containing the eigenvalues $\lambda_i$.
+
+$$
+\Lambda = \begin{bmatrix} \lambda_1 & 0 & \dots & 0 \\ 0 & \lambda_2 & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & \lambda_n \end{bmatrix}
+$$
+
+- **$X^{-1}$ (Left Eigenvectors):** The problem states that the columns of $(X^{-1})^T$ are the left eigenvectors, $y_i$. If the *columns* of the transposed matrix are $y_i$, then the *rows* of the original inverse matrix $X^{-1}$ must be the transposes of those vectors, $y_i^T$.
+
+$$
+X^{-1} = \begin{bmatrix} \text{---} & y_1^T & \text{---} \\ \text{---} & y_2^T & \text{---} \\ & \vdots & \\ \text{---} & y_n^T & \text{---} \end{bmatrix}
+$$
+
+#### 2. Multiply $X$ and $\Lambda$
+
+First, we multiply the matrix of column vectors $X$ by the diagonal matrix $\Lambda$. When you post-multiply a matrix by a diagonal matrix, it scales the columns of the first matrix by the corresponding diagonal entries.
+
+$$
+X \Lambda = \begin{bmatrix} | & | & & | \\ x_1 & x_2 & \dots & x_n \\ | & | & & | \end{bmatrix} \begin{bmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{bmatrix} = \begin{bmatrix} | & | & & | \\ \lambda_1 x_1 & \lambda_2 x_2 & \dots & \lambda_n x_n \\ | & | & & | \end{bmatrix}
+$$
+
+#### 3. Multiply $(X \Lambda)$ and $X^{-1}$: The Outer Product Expansion
+
+Now we multiply our new column matrix $(X \Lambda)$ by the row matrix $X^{-1}$.
+
+There are different ways to think about matrix multiplication. The standard way is "row-dot-column", but to get the formula in the box, we use the **column-times-row** perspective. When you multiply a matrix of columns by a matrix of rows, the result is the sum of the outer products of those vectors:
+
+$$
+A = (X \Lambda) X^{-1} = \begin{bmatrix} | & | & & | \\ \lambda_1 x_1 & \lambda_2 x_2 & \dots & \lambda_n x_n \\ | & | & & | \end{bmatrix} \begin{bmatrix} \text{---} & y_1^T & \text{---} \\ \text{---} & y_2^T & \text{---} \\ & \vdots & \\ \text{---} & y_n^T & \text{---} \end{bmatrix}
+$$
+
+Applying the column-times-row rule:
+
+$$
+A = (\lambda_1 x_1)(y_1^T) + (\lambda_2 x_2)(y_2^T) + \dots + (\lambda_n x_n)(y_n^T)
+$$
+
+Since scalar multiplication is commutative, this gives us exactly the formula in the box:
+
+$$
+A = \lambda_1 x_1 y_1^T + \lambda_2 x_2 y_2^T + \dots + \lambda_n x_n y_n^T
+$$
+
+#### Why this matters
+
+Each term $x_i y_i^T$ is an $n \times n$ matrix. Because it is formed by a single column multiplied by a single row, its column space is 1-dimensional, spanned by $x_i$. Therefore, each term is a **rank-1 matrix**.
+
+This formula proves that any diagonalizable matrix $A$ can be perfectly dismantled into a weighted sum of independent, rank-1 building blocks, where the "weights" are simply the eigenvalues.
+
 ## Pitfalls
 
 - Length preservation means $|\lambda|=1$, not $\lambda=1$.
