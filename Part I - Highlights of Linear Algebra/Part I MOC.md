@@ -19,10 +19,12 @@ Part I gathers the core ideas of linear algebra: vectors, matrices, subspaces, o
 - I.4 - Factorization
 - I.5 - Orthogonality
 - I.6 - Eigenvalues and Eigenvectors
+- I.7 - Positive Definite Matrices
 
 ## Notes
 
 - [[I.6 - Eigenvalues of Orthogonal and Symmetric Matrices]]
+- [[I.7 - Positive Definite Matrices and the Hessian]]
 
 ## Source Conversations
 
