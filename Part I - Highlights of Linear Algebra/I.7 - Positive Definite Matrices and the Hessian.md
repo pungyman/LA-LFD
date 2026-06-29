@@ -6,7 +6,7 @@ section: I.7 Positive Definite Matrices
 pages:
 status: seedling
 created: 2026-06-28
-tags: [type/topic, status/seedling, part/1, section/I-7, positive-definite-matrices, hessian, gradient, optimization, convexity, eigenvalues, saddle-points]
+tags: [type/topic, status/seedling, part/1, section/I-7, positive-definite-matrices, hessian, gradient, optimization, convexity, eigenvalues, saddle-points, principal-axis-theorem, ellipses]
 related: ["[[Part I MOC]]"]
 sources: []
 ---
@@ -72,3 +72,71 @@ When you define a loss function for a neural network, you are creating a chaotic
 However, in deep learning, the gradient only tells you the slope. It doesn't tell you the curvature. A major problem in training is getting stuck at saddle points. The gradient becomes zero, and the model thinks it has found the solution (the minimum loss). But if the Hessian matrix of the loss function is *indefinite* at that point, the model is actually resting on a ledge, not at the bottom of the valley.
 
 If a function is strictly convex, meaning its second derivative matrix is symmetric positive definite everywhere, it is an optimization dream. It means the landscape is one giant, perfect bowl, and gradient descent is mathematically guaranteed to find the absolute global minimum without ever getting trapped.
+
+## Positive Definite Matrices and Principal Axes
+
+This is another brilliant geometric translation provided by Strang. In the previous section, we established that the "energy" of a positive definite matrix, $E = x^T S x$, creates a 3D landscape shaped like a perfect bowl opening upwards.
+
+Now, Strang is shifting the focus from the *bottom* of the bowl to its *cross-sections*.
+
+Here is how to decode this geometric application, which is formally known as the **Principal Axis Theorem**.
+
+## 1. Slicing the Bowl
+
+Imagine you are pouring water into this 3D energy bowl until the water level reaches exactly a height of 1. The surface of the water forms a 2D cross-section of the bowl.
+
+Mathematically, you are setting the energy equation to a constant:
+
+$$
+x^T S x = 1
+$$
+
+Because the matrix $S$ is positive definite (the bowl curves upwards in every direction), this cross-section will always be a closed loop. Specifically, it forms an **ellipse**.
+
+If you look at the matrix $S = \begin{bmatrix} 5 & 4 \\ 4 & 5 \end{bmatrix}$, expanding $x^T S x = 1$ gives you the algebraic equation of this ellipse:
+
+$$
+5x^2 + 8xy + 5y^2 = 1
+$$
+
+## 2. The Problem with the "Tilt"
+
+If you were to graph that equation on a standard $x$-$y$ grid (as seen on the left side of page 51), you would notice something annoying: the ellipse is tilted.
+
+The culprit behind this tilt is the **$8xy$ cross-term**. In linear algebra, whenever your off-diagonal elements in a symmetric matrix are non-zero (the $4$s in matrix $S$), your resulting geometric shape will be rotated relative to the standard coordinate axes.
+
+Working with tilted shapes is mathematically messy. We want to align the ellipse perfectly with our axes so it looks like the neat, upright ellipse on the right side of the page.
+
+## 3. The Solution: Eigendecomposition ($S = Q \Lambda Q^T$)
+
+This is where the magic of eigenvectors and eigenvalues comes in. By factoring the matrix into $S = Q \Lambda Q^T$, we can completely untangle the tilt and the stretching of the ellipse.
+
+- **The Eigenvectors ($Q$) dictate the DIRECTIONS:** The eigenvectors of a symmetric matrix are always orthogonal (perpendicular) to each other. They point exactly along the **principal axes** of the ellipse. In the book, $q_1$ and $q_2$ point perfectly along the longest and shortest diameters of the tilted shape.
+
+By changing our coordinate system from the old $(x, y)$ to new coordinates $(X, Y)$ that line up with these eigenvectors, we effectively rotate our perspective so the ellipse sits straight up. The cross-term vanishes completely.
+
+- **The Eigenvalues ($\Lambda$) dictate the LENGTHS:**
+Once the ellipse is straightened out, its new equation uses the eigenvalues ($\lambda_1 = 9$ and $\lambda_2 = 1$) as the coefficients:
+
+$$
+9X^2 + 1Y^2 = 1
+$$
+
+This is the exact same ellipse, just viewed from our new, perfectly aligned coordinate system!
+
+## 4. The Counter-Intuitive Golden Rule
+
+There is one beautiful, slightly counter-intuitive detail Strang highlights at the bottom of the page regarding the lengths of the axes.
+
+The half-length of an axis is equal to **$1 / \sqrt{\lambda}$**.
+
+This means there is an inverse relationship between the eigenvalue and the physical length of the ellipse:
+
+- The **larger** eigenvalue ($\lambda_1 = 9$) corresponds to the **shorter** axis (length $= 1/\sqrt{9} = 1/3$).
+- The **smaller** eigenvalue ($\lambda_2 = 1$) corresponds to the **longer** axis (length $= 1/\sqrt{1} = 1$).
+
+**Why does this happen?** Think back to the 3D bowl. A large eigenvalue means the bowl curves upwards very steeply in that direction. Because it is so steep, it reaches the water level (height = 1) very quickly. Therefore, the distance from the center to the edge (the axis of the ellipse) is very short! A small eigenvalue means a shallow slope, so it takes a longer horizontal distance to reach a height of 1.
+
+When you scale this up to $n$ dimensions, you are no longer dealing with a 2D ellipse, but an $n$-dimensional hyper-ellipsoid. The exact same rules apply: the eigenvectors define its orientation in high-dimensional space, and the eigenvalues dictate how far it stretches in each of those directions.
+
+If you were to apply this concept of stretching and rotation to the spread of a massive dataset, how do you think these principal axes (eigenvectors) might help you identify the most important features in that data?
