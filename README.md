@@ -2,21 +2,24 @@
 
 This folder is an Obsidian-compatible companion to Gilbert Strang's *Linear Algebra and Learning from Data*. It is designed to sit beside handwritten notes: raw conversations are preserved as source material, while the durable ideas are distilled into structured topic notes.
 
+Scope is **Part I - Highlights of Linear Algebra**. The other six parts of the book are deliberately out of scope and are not represented here.
+
 ## Structure
 
-- `Home.md` is the top-level map of content.
-- `Part I - ...` through `Part VII - ...` mirror the textbook.
-- Each Part folder contains a `Part X MOC.md` note that lists notes and source conversations for that part.
-- `Sources/` stores raw Gemini conversations and other unprocessed source material.
+- `Home.md` is the single map of content: the Part I section list, the polished notes, and the source conversations.
+- `I.1 - ...` through `I.12 - ...` are one folder per Part I section, mirroring the textbook.
+- Each section folder holds its polished topic note alongside the raw conversations that fed it.
 - `_templates/` stores reusable note templates.
+
+Empty section folders carry a `.gitkeep` so the scaffolding survives a clone. Delete it once the folder has a real note.
 
 ## Workflow
 
-1. Save a raw conversation in `Sources/` with a date prefix, for example `2026-06-16 Orthogonal Matrices and Eigenvalues.md`.
+1. Save a raw conversation in the relevant section folder with a date prefix, for example `I.6 - Eigenvalues and Eigenvectors/2026-06-16 Orthogonal Matrices and Eigenvalues.md`.
 2. Add minimal frontmatter to the source note, but keep the transcript intact.
-3. Create or update a polished topic note in the relevant Part folder.
+3. Create or update the polished topic note in the same section folder.
 4. Link the polished note back to the source note under `## Sources`.
-5. Add the polished note to the relevant Part MOC.
+5. Add the polished note to `Home.md`.
 
 ## Naming
 
@@ -66,7 +69,7 @@ tags: [type/source, part/1, section/I-6, eigenvalues]
 ## Tags
 
 - Use `type/topic`, `type/source`, and `type/moc` to distinguish note types.
-- Use `part/1` through `part/7` for textbook parts.
+- Use `part/1` on every note, since Part I is the whole scope.
 - Use `section/I-6` style tags for textbook sections.
 - Use topic tags such as `eigenvalues`, `orthogonal-matrices`, `symmetric-matrices`, `normal-matrices`, `differential-equations`, and `complex-eigenvalues`.
 - Use `status/seedling`, `status/budding`, and `status/evergreen` to track maturity.
@@ -82,7 +85,8 @@ tags: [type/source, part/1, section/I-6, eigenvalues]
 - Prefer Obsidian wikilinks: `[[I.6 - Eigenvalues of Orthogonal and Symmetric Matrices]]`.
 - Put related concepts under `## Connections`.
 - Put raw conversations under `## Sources`.
-- Keep `Home.md` and the Part MOCs updated as the vault grows.
+- Keep `Home.md` updated as the vault grows.
+- Wikilinks resolve by filename, so notes can be moved between section folders without breaking links.
 
 ## Math
 

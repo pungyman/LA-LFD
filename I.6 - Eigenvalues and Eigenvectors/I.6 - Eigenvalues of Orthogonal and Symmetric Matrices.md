@@ -7,7 +7,7 @@ pages:
 status: seedling
 created: 2026-06-16
 tags: [type/topic, status/seedling, part/1, section/I-6, eigenvalues, eigenvectors, orthogonal-matrices, symmetric-matrices, normal-matrices, similar-matrices, change-of-basis, diagonalization, markov-matrices, stochastic-matrices, steady-state, complex-eigenvalues, differential-equations]
-related: ["[[Part I MOC]]", "[[2026-06-16 Orthogonal Matrices and Eigenvalues]]"]
+related: ["[[Home]]", "[[2026-06-16 Orthogonal Matrices and Eigenvalues]]"]
 sources: ["[[2026-06-16 Orthogonal Matrices and Eigenvalues]]"]
 ---
 
@@ -391,7 +391,7 @@ This formula proves that any diagonalizable matrix $A$ can be perfectly dismantl
 
 ## Connections
 
-- [[Part I MOC]]
+- [[Home]]
 - [[I.5 Orthogonal Matrices and Subspaces]]
 - [[Symmetric Matrices]]
 - [[Normal Matrices]]

@@ -2,13 +2,13 @@
 title: Positive Definite Matrices and the Hessian
 book: Linear Algebra and Learning from Data
 part: I
-section: I.7 Positive Definite Matrices
+section: I.7 Symmetric Positive Definite Matrices
 pages:
 status: seedling
 created: 2026-06-28
 tags: [type/topic, status/seedling, part/1, section/I-7, positive-definite-matrices, hessian, gradient, optimization, convexity, eigenvalues, saddle-points, principal-axis-theorem, ellipses]
-related: ["[[Part I MOC]]"]
-sources: []
+related: ["[[Home]]", "[[I.7 - Tests for Positive Definiteness]]"]
+sources: ["[[2026-06-28 Leading Determinants and Positive Definite Matrices]]"]
 ---
 
 # Positive Definite Matrices and the Hessian
@@ -140,3 +140,14 @@ This means there is an inverse relationship between the eigenvalue and the physi
 When you scale this up to $n$ dimensions, you are no longer dealing with a 2D ellipse, but an $n$-dimensional hyper-ellipsoid. The exact same rules apply: the eigenvectors define its orientation in high-dimensional space, and the eigenvalues dictate how far it stretches in each of those directions.
 
 If you were to apply this concept of stretching and rotation to the spread of a massive dataset, how do you think these principal axes (eigenvectors) might help you identify the most important features in that data?
+
+## Connections
+
+- [[Home]]
+- [[I.7 - Tests for Positive Definiteness]] gives the five equivalent tests behind the energy test used here.
+- [[I.7 - Diagonal Entries and Eigenvalue Bounds]] reads the diagonal of the Hessian as curvature along a single parameter's axis.
+- [[I.6 - Eigenvalues of Orthogonal and Symmetric Matrices]]
+
+## Sources
+
+- [[2026-06-28 Leading Determinants and Positive Definite Matrices]] (exchanges 4 and 5)
